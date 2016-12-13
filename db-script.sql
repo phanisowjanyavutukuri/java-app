@@ -1,3 +1,4 @@
+-- Changing to Db
 use simplehr;
 -- Create table
 create table users
