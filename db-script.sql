@@ -1,4 +1,4 @@
-
+-- Using the db
 use simplehr;
 -- Create table
 create table users
