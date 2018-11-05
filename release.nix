@@ -1,25 +1,23 @@
 let
-  pkgs = import <nixpkgs> {}; 1
+  pkgs = import <nixpkgs> {}; 
 
-  jobs = rec { 2
+  jobs = rec { 
 
-    tarball = 3
-      pkgs.releaseTools.sourceTarball { 4
+    tarball =  pkgs.releaseTools.sourceTarball { 
         name = "hello-tarball";
-        src = <hello>; 5
+        src = <hello>; 
         buildInputs = (with pkgs; [ gettext texLive texinfo ]);
       };
 
-    build = 6
-      { system ? builtins.currentSystem }:  7
+    build = { system ? builtins.currentSystem }:  
 
       let pkgs = import <nixpkgs> { inherit system; }; in
-      pkgs.releaseTools.nixBuild { 8
+      pkgs.releaseTools.nixBuild { 
         name = "hello";
         src = jobs.tarball;
         configureFlags = [ "--disable-silent-rules" ];
       };
   };
 in
-  jobs 9
+  jobs 
       
